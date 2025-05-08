@@ -15,11 +15,11 @@ typedef struct TheServer{
     struct sockaddr_in address;
     int socket;
 
-    void (*launch)(void);
+    void (*launch)(TheServer *server);
 
 } TheServer;
 
 TheServer createServer(int domain, int service, int protocol, u_long interface, int port, int backlog,
-    void (*launch)(void));
+    void (*launch)(TheServer *server));
 
 #endif // Server.h

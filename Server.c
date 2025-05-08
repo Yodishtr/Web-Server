@@ -32,7 +32,7 @@ TheServer createServer(int domain, int service, int protocol, u_long interface, 
             exit(1);
         }
 
-        server.launch = launch;
+        server.launch(&server);
 
         return server;
     }
