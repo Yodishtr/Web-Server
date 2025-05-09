@@ -1,7 +1,12 @@
 #include "Server.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <sys/types.h>
+
 
 TheServer createServer(int domain, int service, int protocol, u_long interface, int port, int backlog, 
-    void (*launch)(void)){
+    LaunchFunction launch) {
         TheServer server;
         server.domain = domain;
         server.service = service;
@@ -32,7 +37,7 @@ TheServer createServer(int domain, int service, int protocol, u_long interface, 
             exit(1);
         }
 
-        server.launch(&server);
+        server.launch = launch;
 
         return server;
     }

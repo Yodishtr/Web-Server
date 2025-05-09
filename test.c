@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include "Server.h"
 #include <string.h>
+#include <unistd.h>
+#include <stdlib.h>
+
 
 void launch(TheServer *server){
     char buffer[3000];

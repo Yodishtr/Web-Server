@@ -1,10 +1,14 @@
-#ifndef Server.h;
-#define Server.h
+#ifndef Server_H
+#define Server_H
 
 #include <sys/socket.h>
 #include <netinet/in.h>
 
-typedef struct TheServer{
+struct the_Server;
+
+typedef void (*LaunchFunction)(struct the_Server *server);
+
+typedef struct the_Server{
     int domain;
     int service;
     int protocol;
@@ -15,11 +19,11 @@ typedef struct TheServer{
     struct sockaddr_in address;
     int socket;
 
-    void (*launch)(TheServer *server);
+    LaunchFunction launch;
 
-} TheServer;
+}TheServer;
 
 TheServer createServer(int domain, int service, int protocol, u_long interface, int port, int backlog,
-    void (*launch)(TheServer *server));
+    LaunchFunction launch);
 
 #endif // Server.h
